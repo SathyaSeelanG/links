@@ -1,5 +1,6 @@
-import React from 'react';
-import { Github, Twitter, Instagram, Linkedin, Mail, Globe } from 'lucide-react';
+import React, { useEffect } from 'react';
+import { Github, Twitter, Linkedin, Mail, Globe, MessageSquare, ArrowUpRight } from 'lucide-react';
+import { SiSpacemacs } from 'react-icons/si';
 
 interface LinkItemProps {
   href: string;
@@ -13,91 +14,129 @@ const LinkItem = ({ href, icon, text, delay }: LinkItemProps) => (
     href={href}
     target="_blank"
     rel="noopener noreferrer"
-    className="group w-full p-4 backdrop-blur-md bg-white/20 rounded-xl border border-white/30 shadow-lg 
-               hover:bg-white/30 hover:scale-[1.02] transition-all duration-300 ease-out animate-fade-in"
+    className="group flex items-center w-full p-3.5 bg-white/5 rounded-lg border border-white/10 
+               hover:bg-white/10 hover:border-white/20 hover:translate-x-1 transition-all duration-300 
+               ease-out animate-fade-in backdrop-blur-sm relative overflow-hidden"
     style={{ animationDelay: `${delay}ms` }}
   >
-    <div className="flex items-center space-x-3">
-      <div className="p-2 bg-white/90 rounded-lg shadow-sm group-hover:scale-110 transition-transform duration-300">
-        <span className="text-indigo-600">{icon}</span>
+    {/* Hover gradient effect */}
+    <div className="absolute inset-0 bg-gradient-to-r from-purple-500/10 to-indigo-500/10 opacity-0 
+                    group-hover:opacity-100 transition-opacity duration-500" />
+    
+    <div className="flex items-center justify-between w-full relative">
+      <div className="flex items-center space-x-4">
+        <div className="p-2.5 bg-white/10 rounded-lg group-hover:bg-white/15 transition-all duration-300 
+                      shadow-[0_2px_8px_rgba(255,255,255,0.05)] group-hover:shadow-[0_2px_12px_rgba(255,255,255,0.1)]">
+          <span className="text-white/80 group-hover:text-white/90">{icon}</span>
+        </div>
+        <span className="text-white/80 font-medium text-lg group-hover:text-white/90 transition-all duration-300">
+          {text}
+        </span>
       </div>
-      <span className="text-white font-medium text-lg tracking-wide group-hover:translate-x-1 transition-transform duration-300">
-        {text}
-      </span>
+      
+      {/* Link arrow icon */}
+      <div className="opacity-0 -translate-x-2 group-hover:opacity-100 group-hover:translate-x-0 
+                    transition-all duration-300 text-white/70 group-hover:text-white/90">
+        <ArrowUpRight size={20} className="group-hover:rotate-12 transition-transform duration-300" />
+      </div>
     </div>
+    
+    {/* Bottom border gradient animation */}
+    <div className="absolute bottom-0 left-0 h-[2px] w-0 bg-gradient-to-r from-purple-500/50 to-indigo-500/50 
+                    group-hover:w-full transition-all duration-500" />
   </a>
 );
 
 function App() {
-  return (
-    <div className="min-h-screen bg-gradient-to-br from-indigo-600 via-purple-600 to-pink-500 p-4 relative overflow-hidden">
-      {/* Decorative elements */}
-      <div className="absolute top-0 left-0 w-full h-full">
-        <div className="absolute top-[10%] left-[15%] w-72 h-72 bg-pink-500 rounded-full mix-blend-multiply filter blur-xl opacity-70 animate-blob" />
-        <div className="absolute top-[20%] right-[15%] w-72 h-72 bg-indigo-500 rounded-full mix-blend-multiply filter blur-xl opacity-70 animate-blob animation-delay-2000" />
-        <div className="absolute bottom-[20%] left-[35%] w-72 h-72 bg-purple-500 rounded-full mix-blend-multiply filter blur-xl opacity-70 animate-blob animation-delay-4000" />
-      </div>
+  useEffect(() => {
+    // Update the document title
+    document.title = "Sathya Seelan | Full-Stack Developer & Blockchain Analyst";
+  }, []);
 
-      <div className="max-w-2xl mx-auto pt-16 pb-8 relative z-10">
+  return (
+    <div className="min-h-screen bg-[#0a0a0a] bg-gradient-to-br from-zinc-900 via-purple-950/30 to-zinc-900 p-4">
+      <div className="max-w-2xl mx-auto pt-16 pb-8 px-4">
+        {/* Background decorative elements */}
+        <div className="fixed inset-0 -z-10 overflow-hidden">
+          <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-purple-500/10 rounded-full blur-3xl animate-pulse" />
+          <div className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-indigo-500/10 rounded-full blur-3xl animate-pulse [animation-delay:1s]" />
+        </div>
+
         <div className="flex flex-col items-center mb-12">
-          <div className="relative">
-            <div className="absolute inset-0 bg-gradient-to-r from-indigo-400 to-purple-400 rounded-full blur-lg opacity-75 group-hover:opacity-100 transition-opacity duration-300" />
+          <div className="relative mb-8 group">
+            <div className="absolute inset-0 bg-gradient-to-r from-purple-500/50 to-indigo-500/50 rounded-full blur-xl opacity-50 
+                          group-hover:opacity-70 transition-opacity duration-500" />
             <img
-              src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=200&h=200&q=80"
-              alt="Profile"
-              className="relative w-32 h-32 rounded-full border-4 border-white/50 shadow-2xl object-cover animate-profile-load"
+              src="/sathya_seelan.jpg"
+              alt="Sathya Seelan"
+              className="relative w-28 h-28 rounded-full border-2 border-white/20 shadow-xl object-cover 
+                       group-hover:scale-105 transition-transform duration-500"
             />
           </div>
-          <h1 className="text-4xl font-bold text-white mt-6 mb-2 animate-fade-in">John Doe</h1>
-          <div className="px-4 py-2 bg-white/10 backdrop-blur-md rounded-full border border-white/30 shadow-lg mb-4 animate-fade-in animation-delay-200">
-            <p className="text-white/90 font-medium">Full Stack Developer | Open Source Enthusiast</p>
+          
+          <h1 className="text-3xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-white via-purple-200 to-white mb-3 
+                         hover:scale-105 transition-transform duration-300 cursor-default">
+            Sathya Seelan
+          </h1>
+          
+          <div className="mb-8 hover:scale-105 transition-transform duration-300">
+            <div className="px-4 py-2 bg-white/5 backdrop-blur-sm rounded-full border border-white/10">
+              <div className="flex items-center space-x-3 text-sm">
+                <span className="text-white/70">Full-Stack Developer</span>
+                <span className="text-purple-400/70 animate-pulse">•</span>
+                <span className="text-white/70"> Chia Blockchain Analyst</span>
+              </div>
+            </div>
           </div>
-          <p className="text-white/80 text-center max-w-md mb-8 animate-fade-in animation-delay-400">
-            Building amazing web experiences and sharing knowledge with the community
-          </p>
+
+          <div className="w-full space-y-2.5">
+            <LinkItem
+              href="https://sathyaseelan.in/"
+              icon={<Globe strokeWidth={1.5} size={22} />}
+              text="Portfolio Website"
+              delay={300}
+            />
+            <LinkItem
+              href="https://github.com/SathyaSeelanG"
+              icon={<Github strokeWidth={1.5} size={22} />}
+              text="GitHub"
+              delay={400}
+            />
+            <LinkItem
+              href="https://www.linkedin.com/in/sathya--seelan/"
+              icon={<Linkedin strokeWidth={1.5} size={22} />}
+              text="LinkedIn"
+              delay={500}
+            />
+            <LinkItem
+              href="https://x.com/SATHYA_SEELAN_G"
+              icon={<Twitter strokeWidth={1.5} size={22} />}
+              text="Twitter"
+              delay={600}
+            />
+            <LinkItem
+              href="http://discordapp.com/users/1131445465032970403"
+              icon={<MessageSquare strokeWidth={1.5} size={22} />}
+              text="Discord"
+              delay={700}
+            />
+            <LinkItem
+              href="mailto:sathyaseelangunasekar@gmail.com"
+              icon={<Mail strokeWidth={1.5} size={22} />}
+              text="Email"
+              delay={800}
+            />
+            <LinkItem
+              href="https://www.spacescan.io/address/xch1juyekxjd36feyhgztk7ynfgyh4yg2a3tac59mqddflqkcd20u2xsx5np7a"
+              icon={<SiSpacemacs size={22} />}
+              text="Chia Address"
+              delay={900}
+            />
+          </div>
         </div>
 
-        <div className="space-y-4 px-4">
-          <LinkItem
-            href="https://github.com"
-            icon={<Github size={24} />}
-            text="Follow me on GitHub"
-            delay={500}
-          />
-          <LinkItem
-            href="https://twitter.com"
-            icon={<Twitter size={24} />}
-            text="Connect on Twitter"
-            delay={600}
-          />
-          <LinkItem
-            href="https://instagram.com"
-            icon={<Instagram size={24} />}
-            text="Follow my Instagram"
-            delay={700}
-          />
-          <LinkItem
-            href="https://linkedin.com"
-            icon={<Linkedin size={24} />}
-            text="Connect on LinkedIn"
-            delay={800}
-          />
-          <LinkItem
-            href="https://example.com"
-            icon={<Globe size={24} />}
-            text="Visit my Website"
-            delay={900}
-          />
-          <LinkItem
-            href="mailto:contact@example.com"
-            icon={<Mail size={24} />}
-            text="Send me an Email"
-            delay={1000}
-          />
-        </div>
-
-        <footer className="mt-12 text-center text-white/70 animate-fade-in animation-delay-1000">
-          © 2024 John Doe. All rights reserved.
+        <footer className="mt-12 text-center text-white/40 text-sm hover:text-white/60 transition-colors duration-300">
+          © 2025 Sathya Seelan. All rights reserved.
         </footer>
       </div>
     </div>

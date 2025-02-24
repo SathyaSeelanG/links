@@ -23,11 +23,11 @@ body {
 }
 
 @keyframes fade-in {
-  0% {
+  from {
     opacity: 0;
     transform: translateY(10px);
   }
-  100% {
+  to {
     opacity: 1;
     transform: translateY(0);
   }
@@ -44,17 +44,29 @@ body {
   }
 }
 
+@keyframes scroll {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}
+
 .animate-blob {
   animation: blob 7s infinite;
 }
 
 .animate-fade-in {
   animation: fade-in 0.6s ease-out forwards;
-  opacity: 0;
 }
 
 .animate-profile-load {
   animation: profile-load 0.8s ease-out forwards;
+}
+
+.animate-scroll {
+  animation: scroll 20s linear infinite;
 }
 
 .animation-delay-2000 {
